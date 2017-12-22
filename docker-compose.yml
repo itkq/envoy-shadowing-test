@@ -16,33 +16,32 @@ services:
       - "8000:80"
       - "8001:8001"
 
-  service1:
+  service-a:
     build:
-      context: .
-      dockerfile: Dockerfile-service
+      context: ./service-a
     volumes:
-      - ./service-envoy.json:/etc/service-envoy.json
+      - './service-a-envoy.json:/etc/service-envoy.json:ro'
     networks:
       envoymesh:
         aliases:
-          - service1
+          - service-a
     environment:
-      - SERVICE_NAME=1
+      - SERVICE_NAME=A
     expose:
       - "80"
 
-  service2:
+  service-b:
     build:
       context: .
       dockerfile: Dockerfile-service
     volumes:
-      - ./service-envoy.json:/etc/service-envoy.json
+      - './service-b-envoy.json:/etc/service-envoy.json:ro'
     networks:
       envoymesh:
         aliases:
-          - service2
+          - service-b
     environment:
-      - SERVICE_NAME=2
+      - SERVICE_NAME=B
     expose:
       - "80"
 
