@@ -32,8 +32,7 @@ services:
 
   service-b:
     build:
-      context: .
-      dockerfile: Dockerfile-service
+      context: ./service-b
     volumes:
       - './service-b-envoy.json:/etc/service-envoy.json:ro'
     networks:
